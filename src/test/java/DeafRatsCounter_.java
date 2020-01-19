@@ -14,7 +14,9 @@ public class DeafRatsCounter_ {
     }
 
     private int countDeafRats(String ratsOfHamelin) {
-        return 0;
+        if (ratsOfHamelin.length() == 0)
+            return 0;
+        return 1;
     }
 
 }
