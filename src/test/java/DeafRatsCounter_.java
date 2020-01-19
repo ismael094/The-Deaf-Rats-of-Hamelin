@@ -9,7 +9,7 @@ public class DeafRatsCounter_ {
     }
 
     private int countDeafRats(String ratsOfHamelin) {
-        return -1;
+        return 0;
     }
 
 }
