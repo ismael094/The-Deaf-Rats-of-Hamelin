@@ -32,22 +32,44 @@ public class DeafRatsCounter_ {
         assertThat(countDeafRats("~O~O~O~OP~O~OO~")).isEqualTo(2);
     }
 
-    private int countDeafRats(String ratsOfHamelin) {
-        ratsOfHamelin = ratsOfHamelin.replaceAll(" ", "");
-        if (ratsOfHamelin.length() == 0)
+    private int countDeafRats(String roadOfRats) {
+        if (roadOfRats.length() == 0)
             return 0;
-        System.out.println(ratsOfHamelin.substring(ratsOfHamelin.indexOf("P")+1));
-        return countDeafRats(ratsOfHamelin.substring(0,ratsOfHamelin.indexOf("P")), LEFT_DEAF_RAT) + countDeafRats(ratsOfHamelin.substring(ratsOfHamelin.indexOf("P")+1), RIGHT_DEAF_RAT);
+        return sumDeafRatsInTheLeftAndRight(roadOfRats);
+    }
+
+    private int sumDeafRatsInTheLeftAndRight(String roadOfRats) {
+        return countDeafRatsOnTheLeft(deleteSpace(roadOfRats)) + countDeafRatsOnTheRight(deleteSpace(roadOfRats));
+    }
+
+    private String deleteSpace(String roadOfRats) {
+        return roadOfRats.replaceAll(" ", "");
+    }
+
+    private int countDeafRatsOnTheLeft(String roadOfRats) {
+        return countDeafRats(getRatsOnTheLeft(roadOfRats), LEFT_DEAF_RAT);
+    }
+
+    private int countDeafRatsOnTheRight(String roadOfRats) {
+        return countDeafRats(getRatsOnTheRight(roadOfRats), RIGHT_DEAF_RAT);
+    }
+
+    private String getRatsOnTheRight(String roadOfRats) {
+        return roadOfRats.substring(roadOfRats.indexOf("P")+1);
+    }
+
+    private String getRatsOnTheLeft(String roadOfRats) {
+        return roadOfRats.substring(0,roadOfRats.indexOf("P"));
     }
 
     private int countDeafRats(String str, String deafRat) {
         if (str.length() < 2)
             return 0;
-        if (str.substring(0,2).contains(deafRat)) {
+        if (str.substring(0,2).contains(deafRat))
             return 1 + countDeafRats(str.substring(2),deafRat);
-        } else {
+         else
             return countDeafRats(str.substring(2),deafRat);
-        }
+
     }
 
 
