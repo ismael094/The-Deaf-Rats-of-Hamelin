@@ -27,6 +27,11 @@ public class DeafRatsCounter_ {
         assertThat(countDeafRats("O~ P ~O")).isEqualTo(2);
     }
 
+    @Test
+    public void a_pied_piper_and_zero_deaf_rats_on_the_left_side_and_two_deaf_rats_on_the_right_side_should_return_two_deaf_rats() {
+        assertThat(countDeafRats("~O~O~O~OP~O~OO~")).isEqualTo(2);
+    }
+
     private int countDeafRats(String ratsOfHamelin) {
         if (ratsOfHamelin.length() == 0)
             return 0;
