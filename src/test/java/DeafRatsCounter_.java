@@ -9,8 +9,13 @@ public class DeafRatsCounter_ {
     }
 
     @Test
-    public void just_a_pied_piper_and_a_deaf_rats_should_return_one_deaf_rats() {
+    public void a_pied_piper_and_a_deaf_rats_should_return_one_deaf_rats() {
         assertThat(countDeafRats("P ~O")).isEqualTo(1);
+    }
+
+    @Test
+    public void a_pied_piper_and_two_deaf_rats_should_return_two_deaf_rats() {
+        assertThat(countDeafRats("P ~O ~O")).isEqualTo(2);
     }
 
     private int countDeafRats(String ratsOfHamelin) {
