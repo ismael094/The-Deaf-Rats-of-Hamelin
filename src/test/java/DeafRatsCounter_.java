@@ -33,17 +33,21 @@ public class DeafRatsCounter_ {
     }
 
     private int countDeafRats(String ratsOfHamelin) {
+        ratsOfHamelin = ratsOfHamelin.replaceAll(" ", "");
         if (ratsOfHamelin.length() == 0)
             return 0;
-        return countDeafRats(ratsOfHamelin.substring(0,ratsOfHamelin.indexOf("P")), LEFT_DEAF_RAT) + countDeafRats(ratsOfHamelin.substring(ratsOfHamelin.indexOf("P")+1).trim(), RIGHT_DEAF_RAT);
+        System.out.println(ratsOfHamelin.substring(ratsOfHamelin.indexOf("P")+1));
+        return countDeafRats(ratsOfHamelin.substring(0,ratsOfHamelin.indexOf("P")), LEFT_DEAF_RAT) + countDeafRats(ratsOfHamelin.substring(ratsOfHamelin.indexOf("P")+1), RIGHT_DEAF_RAT);
     }
 
     private int countDeafRats(String str, String deafRat) {
-        if (str.contains(deafRat))
-            return 1 + countDeafRats(str.substring(str.indexOf(deafRat)+2),deafRat);
-
-
-        return 0;
+        if (str.length() < 2)
+            return 0;
+        if (str.substring(0,2).contains(deafRat)) {
+            return 1 + countDeafRats(str.substring(2),deafRat);
+        } else {
+            return countDeafRats(str.substring(2),deafRat);
+        }
     }
 
 
