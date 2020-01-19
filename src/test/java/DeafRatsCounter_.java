@@ -21,7 +21,13 @@ public class DeafRatsCounter_ {
     private int countDeafRats(String ratsOfHamelin) {
         if (ratsOfHamelin.length() == 0)
             return 0;
-        return 1;
+        return deafRats(ratsOfHamelin.substring(ratsOfHamelin.indexOf("P")));
+    }
+
+    private int deafRats(String str) {
+        if (str.contains("~O"))
+            return 1 + deafRats(str.substring(str.indexOf("~O")+2));
+        return 0;
     }
 
 }
